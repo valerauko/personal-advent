@@ -1,0 +1,22 @@
+name: Build and push image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-${{ hashFiles('yarn.lock') }}
+      - run: yarn
+      - run: yarn build
+      - uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/valerauko/personal-advent:${{ github.sha }}

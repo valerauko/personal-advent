@@ -56,3 +56,11 @@
     (reset! css-ref nil))
 
   ::stopped)
+
+(defn build []
+  (reset! css-ref
+          (-> (cb/start)
+              (cb/index-path (io/file "src" "advent") {})))
+
+  ;; then build it once
+  (generate-css))
