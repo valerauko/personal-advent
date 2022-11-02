@@ -53,6 +53,6 @@ jobs:
       - run: |
           version=$(echo ${{ github.ref_name }} | sed 's/v//')
           path='manifests/deployment.yaml'
-          sed -i -e "s%image: ${{ env.IMAGE }}:.*$%image: ${{ env.IMAGE }}:$version" $path
+          sed -i -e "s%image: ${{ env.IMAGE }}:.*$%image: ${{ env.IMAGE }}:$version%" $path
           git diff "$path"
           git add "$path"
