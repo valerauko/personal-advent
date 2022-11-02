@@ -14,6 +14,10 @@ jobs:
         with:
           path: node_modules
           key: node-${{ hashFiles('yarn.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('shadow-cljs.edn') }}
       - run: yarn
       - run: yarn build
       - uses: docker/build-push-action@v2
