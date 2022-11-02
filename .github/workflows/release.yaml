@@ -30,7 +30,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: ghcr.io/${{ gihub.actor }}/${{ github.repository }}
+          images: ghcr.io/${{ github.actor }}/${{ github.repository }}
       - uses: docker/build-push-action@v2
         with:
           push: true
