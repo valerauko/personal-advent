@@ -53,8 +53,8 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          if [ "${{ github.sha }}" == $(git rev-parse main) ]; then
-            git checkout main
+          if [ "${{ github.sha }}" == $(git rev-parse origin/main) ]; then
+            git checkout --track origin/main
           else
             echo "Tag is out of date"
             exit 1
