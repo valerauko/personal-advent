@@ -22,5 +22,17 @@ jobs:
           key: maven-${{ hashFiles('shadow-cljs.edn') }}
       - run: yarn
       - run: yarn build
-      - run: docker build -t ghcr.io/valerauko/personal-advent:${{ github.sha }} .
-      - run: docker push ghcr.io/valerauko/personal-advent:${{ github.sha }}
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: ghcr.io/${{ gihub.actor }}/${{ github.repository }}
+      - uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
