@@ -56,3 +56,8 @@ jobs:
           sed -i -e "s%image: ${{ env.IMAGE }}:.*$%image: ${{ env.IMAGE }}:$version%" $path
           git diff "$path"
           git add "$path"
+      - run: |
+          git config user.email "actions@github.com"
+          git config user.name "Github Action"
+          git commit -m "Update target image tag"
+          git push
