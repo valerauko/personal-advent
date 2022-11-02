@@ -6,7 +6,7 @@
 
 そういうニーズに答えるための個人アドカレだ。
 
-[![image](https://user-images.githubusercontent.com/6322484/199533405-ee50b96d-a3cb-44c7-ac30-ef3312b4bd1b.png)](https://advent.dekiru.tech)
+[![image](https://user-images.githubusercontent.com/6322484/199551614-26370287-bfaf-4b5f-9393-cc132b8b0b5c.png)](https://advent.dekiru.tech)
 
 ## 技術スタック
 
