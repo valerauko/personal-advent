@@ -1,0 +1,24 @@
+{
+  "name": "personal-advent",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "yarn && yarn clean && shadow-cljs run advent.dev/watch",
+    "build": "yarn clean && shadow-cljs release app",
+    "test": "shadow-cljs compile karma-test && karma start --single-run --reporters junit,dots",
+    "report": "shadow-cljs run shadow.cljs.build-report app report.html",
+    "lint": "shadow-cljs run clj-kondo.main --lint src",
+    "clean": "rm -rf public/js target"
+  },
+  "devDependencies": {
+    "shadow-cljs": "2.20.7",
+    "karma": "6.3.11",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-cljs-test": "0.1.0",
+    "karma-junit-reporter": "2.0.1"
+  },
+  "dependencies": {
+    "@tabler/icons": "1.109.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  }
+}
