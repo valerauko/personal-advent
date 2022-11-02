@@ -1,7 +1,7 @@
 (ns advent.core
   (:require [reagent.dom]
             [re-frame.core :as rf]
-            ;; [advent.events :as events]
+            [advent.events :as events]
             [advent.views :as views]))
 
 (defn ^:dev/after-load remount
@@ -13,5 +13,5 @@
 
 (defn ^:export init
   []
-;;   (rf/dispatch-sync [::events/initialize-db])
+  (rf/dispatch-sync [::events/initialize-db])
   (remount))
