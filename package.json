@@ -1,6 +1,6 @@
 {
   "name": "personal-advent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "dev": "yarn && yarn clean && shadow-cljs run advent.dev/watch",
     "build": "yarn clean && shadow-cljs release app && shadow-cljs run advent.css/build",

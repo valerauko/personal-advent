@@ -14,8 +14,8 @@
 
 (defn calendar
   []
-  (let [before (-> "2022/12/01" (js/Date.) (.getDay))
-        after (-> "2022/12/31" (js/Date.) (.getDay))]
+  (let [before (-> "2022/12/01" (js/Date.) (.getDay) (dec))
+        after (-> "2022/12/31" (js/Date.) (.getDay) (dec))]
     [:table
      {:class [$table]}
      [:thead
