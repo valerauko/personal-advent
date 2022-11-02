@@ -21,4 +21,4 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: docker build -t ghcr.io/valerauko/personal-advent:${{ github.sha }} .
-      # - run: docker push ghcr.io/valerauko/personal-advent:${{ github.sha }}
+      - run: docker push ghcr.io/valerauko/personal-advent:${{ github.sha }}
