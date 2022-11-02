@@ -50,9 +50,10 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - run: |
-          git ls-remote
-          if [ "${{ github.sha }}" == $(git rev-parse refs/heads/main) ]; then
+          if [ "${{ github.sha }}" == $(git rev-parse main) ]; then
             git checkout main
           else
             echo "Tag is out of date"
