@@ -5,13 +5,16 @@
 (rf/reg-fx
  ::dialog
  (fn [[mode e]]
-   (let [dialog (js/document.getElementById "dialog")]
+   (let [dialog (js/document.getElementById "dialog")
+         form (js/document.getElementById "form")]
      (case mode
        :show
        (.showModal dialog)
 
        :close
-       (.close dialog)
+       (do
+         (.close dialog)
+         (.reset form))
 
        :reset
        (some-> e .-target .reset)
@@ -19,7 +22,9 @@
        ;; else
        (when-let [target (.-target e)]
          (if (= "DIALOG" (.-nodeName target))
-           (.close dialog)
+           (do
+             (.close dialog)
+             (.reset form))
            (.stopPropagation e)))))))
 
 (def local-storage-key

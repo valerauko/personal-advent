@@ -83,7 +83,8 @@
        {:class [$dialog-head]}
        (str day "日の投稿を設定")]
       [:form
-       {:method "dialog"}
+       {:method "dialog"
+        :id "form"}
        [:input
         {:class [$input $text-field]
          :type :text
