@@ -6,13 +6,17 @@
             [advent.subs :as subs]))
 
 (def $day
+  (css {:border "1px solid rgba(140, 130, 115, 0.12)"}))
+
+(def $day-wrap
   (css {:height "130px"
+        :min-height "130px"
+        :max-height "130px"
         :width "180px"
         :min-width "180px"
         :max-width "180px"
-        :vertical-align "top"
-        :box-sizing "border-box"
-        :border "1px solid rgba(140, 130, 115, 0.12)"}))
+        :display "flex"
+        :flex-flow "column nowrap"}))
 
 (def $date
   (css {:padding "0.5em 0 0 0.5em"
@@ -29,28 +33,39 @@
         {:background "#1d2021"}]))
 
 (def $day-detail
-  (css {:display "flex"
-        :flex-flow "row wrap"
-        :height "100%"}))
+  (css {:width "100%"
+        :flex-grow "1"
+        :display "flex"
+        :flex-flow "column nowrap"}))
 
-(def $day-line
-  (css {:margin "0.5em"
-        :height "3em"
+(def $day-title
+  (css {:margin "0 0.5em 0.5em 0.5em"
         :word-wrap "break-word"
         :overflow "hidden"
-        :text-overflow "ellipsis"}))
+        :text-overflow "ellipsis"
+        :max-height "3em"}))
+
+(def $day-footer
+  (css {:display "flex"
+        :flex-flow "row nowrap"
+        :margin-top "auto"
+        :align-items "center"
+        :padding "0 0.5em 0.5em 0.5em"}))
+
+(def $day-calendar
+  (css {}))
 
 (def $edit-button
-  (css {:margin "auto 0.5em 0.5em auto"
+  (css {:margin-left "auto"
         :align-self "flex-end"
         :width "2em"
         :height "2em"}))
 
 (def $plus-button
   (css {:width "100%"
-        :height "calc(100% - 1em)"
+        :flex-grow "1"
         :display "flex"
-        :flex-flow "row no-wrap"
+        :flex-flow "row nowrap"
         :padding-bottom "0.75em"}
        [:focus
         {:outline "none"
@@ -66,38 +81,42 @@
     :class [$day (if advent?
                    $advent-day
                    $other-day)]}
-   [:header
-    {:class [$date]}
-    (str n)]
-   (when advent?
-     (if-let [{:keys [title calendar-url :post-url]} @(subscribe [::subs/day n])]
-       [:div
-        {:class [$day-detail]}
-        [:p
-         {:class [$day-line]}
-         (if post-url
-           [:a
-            {:href post-url}
-            title]
-           title)]
-        (when calendar-url
-          [:p
-           {:class [$day-line]}
-           [:a
-            {:href calendar-url}
-            "カレンダー"]])
+   [:div
+    {:class [$day-wrap]}
+    [:header
+     {:class [$date]}
+     (str n)]
+    (when advent?
+      (if-let [{:keys [title calendar-url :post-url]} @(subscribe [::subs/day n])]
+        [:div
+         {:class [$day-detail]}
+         [:p
+          {:class [$day-title]}
+          (if post-url
+            [:a
+             {:href post-url}
+             title]
+            title)]
+         [:div
+          {:class [$day-footer]}
+          (when calendar-url
+            [:p
+             {:class [$day-calendar]}
+             [:a
+              {:href calendar-url}
+              "カレンダー"]])
+          [:button
+           {:class [$edit-button]
+            :title "投稿予定を編集"
+            :on-click #(dispatch [::events/dialog-show n])}
+           [:> IconPencil
+            {:size 32
+             :stroke 2}]]]]
         [:button
-         {:class [$edit-button]
-          :title "投稿予定を編集"
+         {:class [$plus-button]
+          :title "投稿予定を追加"
           :on-click #(dispatch [::events/dialog-show n])}
-         [:> IconPencil
-          {:size 32
-           :stroke 2}]]]
-       [:button
-        {:class [$plus-button]
-         :title "投稿予定を追加"
-         :on-click #(dispatch [::events/dialog-show n])}
-        [:> IconPlus
-         {:class [$plus-icon]
-          :size 32
-          :stroke 3}]]))])
+         [:> IconPlus
+          {:class [$plus-icon]
+           :size 32
+           :stroke 3}]]))]])
