@@ -48,6 +48,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
+    environment:
+      name: production
+      url: https://advent.dekiru.tech
     steps:
       - uses: actions/checkout@v3
         with:
