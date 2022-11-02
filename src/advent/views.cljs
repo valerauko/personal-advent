@@ -1,5 +1,6 @@
 (ns advent.views
   (:require [shadow.css :refer [css]]
+            [advent.atoms.git-link :refer [git-link]]
             [advent.organisms.calendar :refer [calendar]]
             [advent.organisms.dialog :refer [dialog]]))
 
@@ -17,4 +18,5 @@
   [:div
    {:class [$main]}
    [calendar]
-   [dialog]])
+   [dialog]
+   [git-link]])
