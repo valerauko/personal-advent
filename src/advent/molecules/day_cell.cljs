@@ -91,7 +91,11 @@
         [:div
          {:class [$day-detail]}
          [:p
-          {:class [$day-title]}
+          {:class [$day-title]
+           ;; shadow-css throws these away for some reason
+           :style {"display" "-webkit-box"
+                   "-webkit-box-orient" "vertical"
+                   "-webkit-line-clamp" "2"}}
           (if post-url
             [:a
              {:href post-url}
