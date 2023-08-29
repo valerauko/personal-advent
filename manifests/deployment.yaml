@@ -7,6 +7,10 @@ metadata:
     role: static
 spec:
   replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: advent
@@ -17,6 +21,14 @@ spec:
         app: advent
         role: static
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: advent
+                  role: static
+              topologyKey: kubernetes.io/hostname
       containers:
         - name: advent-static
           image: ghcr.io/valerauko/personal-advent:1.1.0
