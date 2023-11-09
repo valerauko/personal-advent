@@ -21,4 +21,4 @@ spec:
                 port:
                   name: http
             path: /
-            pathType: prefix
+            pathType: Prefix
