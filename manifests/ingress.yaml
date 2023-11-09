@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: advent
@@ -16,5 +16,9 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: advent
-              servicePort: http
+              service:
+                name: advent
+                port:
+                  name: http
+            path: /
+            pathType: prefix
