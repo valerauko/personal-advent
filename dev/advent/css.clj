@@ -11,7 +11,7 @@
         (-> @css-ref
             (cb/generate '{:ui {:include [advent*]}})
             (cb/write-outputs-to (io/file "public" "css")))]
-    (binding [*out* (io/writer (System/out))]
+    (binding [*out* (io/writer System/out)]
       (prn [:CSS] :generated)
       (doseq [mod (:outputs result)
               {:keys [warning-type] :as warning} (:warnings mod)]
@@ -45,7 +45,7 @@
 
                (generate-css)
                (catch Throwable e
-                 (binding [*out* (io/writer (System/out))]
+                 (binding [*out* (io/writer System/out)]
                    (prn [:CSS] :build-failure e)))))))
 
   ::started)
