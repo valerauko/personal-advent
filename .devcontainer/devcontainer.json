@@ -1,0 +1,12 @@
+{
+    "name": "personal-advent",
+    "image": "node:lts-alpine",
+    "onCreateCommand": "apk add git openjdk21",
+    "postStartCommand": "npm run dev",
+    "forwardPorts": [
+        8280,
+        8290,
+        8777,
+        9630
+    ]
+}
