@@ -28,7 +28,7 @@
            (.stopPropagation e)))))))
 
 (def local-storage-key
-  "personal-advent-2022")
+  "personal-advent-2024")
 
 (def persist
   (rf/after
