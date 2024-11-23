@@ -12,10 +12,16 @@
         :color "rgba(156, 156, 156, 0.8)"
         :padding "0.5em 0"}))
 
+(defn previous-day-of-week
+  [day]
+  (if (zero? day)
+    6
+    (dec day)))
+
 (defn calendar
   []
-  (let [before (-> "2022/12/01" (js/Date.) (.getDay) (dec))
-        after (-> "2022/12/31" (js/Date.) (.getDay) (dec))]
+  (let [before (-> "2024/12/01" (js/Date.) (.getDay) previous-day-of-week)
+        after (-> "2024/12/31" (js/Date.) (.getDay) previous-day-of-week)]
     [:table
      {:class [$table]}
      [:thead
