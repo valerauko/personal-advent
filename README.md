@@ -17,6 +17,10 @@
 
 ## 動かすとき
 
+### VS Code
+
+devcontainer対応。
+
 ### ローカル
 
 `yarn dev` してから `localhost:8280` で確認可能。
